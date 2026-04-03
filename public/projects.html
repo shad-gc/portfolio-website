@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PORTFOLIO // PROJECTS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════ -->
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <span class="nav-prefix">[SYS]&nbsp;</span>PORTFOLIO.OS
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">// ABOUT</a></li>
+      <li><a href="resume.html">// RESUME</a></li>
+      <li><a href="projects.html">// PROJECTS</a></li>
+    </ul>
+
+    <div class="nav-status">
+      <span class="dot"></span>
+      <span id="nav-clock">ONLINE</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE CONTENT
+  ══════════════════════════════════════════════════════ -->
+  <main class="page-wrapper">
+
+    <!-- Page title -->
+    <div class="page-title">
+      <div class="prompt">$ ls -la /ops/projects/ | grep -v classified</div>
+      <h1>ACTIVE PROJECTS</h1>
+      <div class="subtitle">// 6 RECORDS FOUND — SORTED BY PRIORITY</div>
+    </div>
+
+    <!-- ── Filter / stats bar ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ INDEX</span>
+        <span class="panel-id">MANIFEST-001</span>
+      </div>
+      <div class="panel-body">
+        <div class="data-row">
+          <span class="data-label">TOTAL PROJECTS</span>
+          <span class="data-value text-green">6</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">STATUS</span>
+          <span class="data-value">
+            <span class="badge badge-green">4 ACTIVE</span>
+            <span class="badge badge-magenta">2 ARCHIVED</span>
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">PRIMARY STACK</span>
+          <span class="data-value">
+            <span class="badge badge-cyan">Node.js</span>
+            <span class="badge badge-cyan">GCP</span>
+            <span class="badge badge-cyan">Docker</span>
+            <span class="badge badge-cyan">Python</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Project cards grid ── -->
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="card-tag">// CLOUD INFRA</div>
+        <h3>PORTFOLIO.OS</h3>
+        <p>
+          This site. A cyberpunk-terminal portfolio deployed to Google Cloud Run.
+          Containerized with Docker, served via Express, styled with zero frameworks.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Cloud Run</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle/portfolio" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+          <a href="#" class="card-link">Live ↗</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="card-tag">// BACKEND API</div>
+        <h3>EVENT PIPELINE</h3>
+        <p>
+          High-throughput event ingestion service processing 50k events/sec.
+          Pub/Sub backed, horizontally scalable, with dead-letter queue handling.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">GCP Pub/Sub</span>
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Kubernetes</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="card-tag">// DEV TOOLING</div>
+        <h3>DEPLOY SENTINEL</h3>
+        <p>
+          CLI tool that watches GitHub Actions runs and sends Slack notifications
+          on failure, with structured error context and diff summaries.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">GitHub API</span>
+          <span class="tech-tag">Slack API</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="card-tag">// INFRASTRUCTURE</div>
+        <h3>TERRAFORM MODULES</h3>
+        <p>
+          Reusable Terraform modules for spinning up Cloud Run services, VPCs,
+          and IAM bindings on GCP. Published with full variable documentation.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Terraform</span>
+          <span class="tech-tag">GCP</span>
+          <span class="tech-tag">Cloud Run</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 5 — Archived -->
+      <div class="project-card" style="opacity:0.65;">
+        <div class="card-tag" style="color:var(--text-dim);">// ARCHIVED · WEB APP</div>
+        <h3 style="color:var(--text-dim); text-shadow:none;">TASK BOARD</h3>
+        <p>
+          Lightweight Kanban board built with vanilla JS and a SQLite backend.
+          Functional but superseded by better tooling. Kept for reference.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">HTML/CSS/JS</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">SQLite</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- Project 6 — Archived -->
+      <div class="project-card" style="opacity:0.65;">
+        <div class="card-tag" style="color:var(--text-dim);">// ARCHIVED · SCRIPTS</div>
+        <h3 style="color:var(--text-dim); text-shadow:none;">LOG HARVESTER</h3>
+        <p>
+          Bash + Python scripts that scraped application logs from GCS, parsed
+          structured JSON, and loaded summaries into BigQuery for analysis.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Bash</span>
+          <span class="tech-tag">BigQuery</span>
+          <span class="tech-tag">GCS</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
+
+    <!-- ── Open source contributions ── -->
+    <div class="panel mt-2">
+      <div class="panel-header">
+        <span class="panel-title">▸ OPEN SOURCE CONTRIBUTIONS</span>
+        <span class="panel-id">MODULE-OSS</span>
+      </div>
+      <div class="panel-body">
+        <div class="data-row">
+          <span class="data-label">REPO</span>
+          <span class="data-value">
+            <a href="https://github.com/someorg/somerepo" target="_blank" rel="noopener">someorg/somerepo</a>
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">CONTRIBUTION</span>
+          <span class="data-value text-dim">
+            Fixed edge case in retry logic for HTTP client — PR #412
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">STATUS</span>
+          <span class="data-value">
+            <span class="badge badge-green">MERGED</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-left">// PORTFOLIO.OS v1.0.0 — DEPLOYED ON CLOUD RUN</span>
+    <span class="footer-right">STATUS: ONLINE ◆</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PORTFOLIO // RESUME</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════ -->
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <span class="nav-prefix">[SYS]&nbsp;</span>PORTFOLIO.OS
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html">// ABOUT</a></li>
+      <li><a href="resume.html">// RESUME</a></li>
+      <li><a href="projects.html">// PROJECTS</a></li>
+    </ul>
+
+    <div class="nav-status">
+      <span class="dot"></span>
+      <span id="nav-clock">ONLINE</span>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE CONTENT
+  ══════════════════════════════════════════════════════ -->
+  <main class="page-wrapper">
+
+    <!-- Page title -->
+    <div class="page-title">
+      <div class="prompt">$ cat /records/resume.json | jq .</div>
+      <h1>OPERATIVE RESUME</h1>
+      <div class="subtitle">// CLASSIFICATION: PUBLIC — CLEARANCE LEVEL 1</div>
+    </div>
+
+    <!-- ── Download / contact quick-bar ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ QUICK ACCESS</span>
+        <span class="panel-id">RECORD #R-001</span>
+      </div>
+      <div class="panel-body">
+        <div class="data-row">
+          <span class="data-label">DOWNLOAD</span>
+          <!-- Replace href with actual PDF path when you have one -->
+          <span class="data-value">
+            <a href="#" class="card-link">resume.pdf ↓</a>
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">LAST UPDATED</span>
+          <span class="data-value text-dim">2026-04-01</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">CONTACT</span>
+          <span class="data-value">
+            <a href="mailto:you@example.com">you@example.com</a>
+            &nbsp;·&nbsp;
+            <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">LinkedIn</a>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Work Experience ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ WORK EXPERIENCE</span>
+        <span class="panel-id">MODULE-EXP</span>
+      </div>
+      <div class="panel-body">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="tl-date">2024-01 → PRESENT</div>
+            <div class="tl-title">SENIOR SOFTWARE ENGINEER</div>
+            <div class="tl-org">Acme Corp — San Francisco, CA</div>
+            <div class="tl-desc">
+              Led backend architecture for a high-throughput event processing
+              pipeline handling 50k events/sec. Migrated legacy services to
+              Google Cloud Run, reducing infrastructure costs by 40%.
+              Implemented CI/CD with Cloud Build and GitHub Actions.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-date">2022-06 → 2023-12</div>
+            <div class="tl-title">SOFTWARE ENGINEER</div>
+            <div class="tl-org">Initech Labs — Remote</div>
+            <div class="tl-desc">
+              Built and maintained REST APIs in Node.js/Express serving
+              2M+ daily requests. Containerized all services with Docker.
+              Collaborated with platform team to roll out Kubernetes-based
+              staging environments.
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="tl-date">2021-01 → 2022-05</div>
+            <div class="tl-title">JUNIOR DEVELOPER</div>
+            <div class="tl-org">Startup XYZ — New York, NY</div>
+            <div class="tl-desc">
+              Full-stack development on an early-stage SaaS product.
+              Worked across HTML/CSS/JS frontend and a Python/Flask backend.
+              Introduced automated testing and cut regression bugs by 60%.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Education ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ EDUCATION</span>
+        <span class="panel-id">MODULE-EDU</span>
+      </div>
+      <div class="panel-body">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="tl-date">2017 → 2021</div>
+            <div class="tl-title">B.S. COMPUTER SCIENCE</div>
+            <div class="tl-org">State University — Major: Computer Science · GPA: 3.8</div>
+            <div class="tl-desc">
+              Coursework in algorithms, distributed systems, operating systems,
+              and computer networks. Capstone project: a distributed key-value
+              store built with Raft consensus.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Technical skills ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ TECHNICAL SKILLS</span>
+        <span class="panel-id">MODULE-SKILLS</span>
+      </div>
+      <div class="panel-body">
+
+        <div class="data-row">
+          <span class="data-label">LANGUAGES</span>
+          <span class="data-value">
+            <span class="badge badge-cyan">JavaScript</span>
+            <span class="badge badge-cyan">TypeScript</span>
+            <span class="badge badge-cyan">Python</span>
+            <span class="badge badge-cyan">Bash</span>
+            <span class="badge badge-cyan">SQL</span>
+          </span>
+        </div>
+
+        <div class="data-row">
+          <span class="data-label">FRAMEWORKS</span>
+          <span class="data-value">
+            <span class="badge badge-green">Node.js</span>
+            <span class="badge badge-green">Express</span>
+            <span class="badge badge-green">Flask</span>
+          </span>
+        </div>
+
+        <div class="data-row">
+          <span class="data-label">CLOUD / INFRA</span>
+          <span class="data-value">
+            <span class="badge badge-magenta">GCP</span>
+            <span class="badge badge-magenta">AWS</span>
+            <span class="badge badge-magenta">Docker</span>
+            <span class="badge badge-magenta">Cloud Run</span>
+            <span class="badge badge-magenta">Kubernetes</span>
+          </span>
+        </div>
+
+        <div class="data-row">
+          <span class="data-label">DATABASES</span>
+          <span class="data-value">
+            <span class="badge badge-cyan">PostgreSQL</span>
+            <span class="badge badge-cyan">Redis</span>
+            <span class="badge badge-cyan">BigQuery</span>
+          </span>
+        </div>
+
+        <div class="data-row">
+          <span class="data-label">TOOLS</span>
+          <span class="data-value">
+            <span class="badge badge-green">Git</span>
+            <span class="badge badge-green">GitHub Actions</span>
+            <span class="badge badge-green">Terraform</span>
+            <span class="badge badge-green">Grafana</span>
+          </span>
+        </div>
+
+        <hr class="hr-terminal" />
+
+        <!-- Proficiency bars -->
+        <div class="skill-item">
+          <div class="skill-meta">
+            <span class="skill-name">Node.js / Express</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width:90%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-meta">
+            <span class="skill-name">Docker / Cloud Run</span>
+            <span>80%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width:80%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-meta">
+            <span class="skill-name">PostgreSQL</span>
+            <span>75%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width:75%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-meta">
+            <span class="skill-name">Terraform / IaC</span>
+            <span>65%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width:65%"></div>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-meta">
+            <span class="skill-name">Kubernetes</span>
+            <span>55%</span>
+          </div>
+          <div class="skill-bar-track">
+            <div class="skill-bar-fill" style="width:55%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Certifications ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ CERTIFICATIONS</span>
+        <span class="panel-id">MODULE-CERT</span>
+      </div>
+      <div class="panel-body">
+        <div class="data-row">
+          <span class="data-label">GCP ACE</span>
+          <span class="data-value">
+            Google Cloud Associate Cloud Engineer
+            <span class="badge badge-green" style="margin-left:0.5rem;">ACTIVE</span>
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">AWS SAA</span>
+          <span class="data-value">
+            AWS Solutions Architect — Associate
+            <span class="badge badge-green" style="margin-left:0.5rem;">ACTIVE</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-left">// PORTFOLIO.OS v1.0.0 — DEPLOYED ON CLOUD RUN</span>
+    <span class="footer-right">STATUS: ONLINE ◆</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

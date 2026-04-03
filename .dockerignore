@@ -1,0 +1,14 @@
+# Exclude files that don't belong in the Docker image
+
+node_modules
+npm-debug.log*
+
+# Git and editor files
+.git
+.gitignore
+.DS_Store
+*.env
+*.env.*
+
+# Docs (not needed at runtime)
+README.md
