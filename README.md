@@ -36,8 +36,6 @@ Automatically deployed via CI/CD on every push to `main`.
 4. Cloud Run deploys the latest container revision  
 5. Traffic is routed to the updated service
 
-This follows a standard build → store → deploy workflow for containerized applications.  
-
 ## Features
 
 - Fully containerized application  
