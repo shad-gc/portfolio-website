@@ -13,7 +13,7 @@ The frontend UI was generated using Claude Code to accelerate iteration, while t
 
 ## Live Site
 
-[View Live Portfolio](https://portfolio-site-598222654730.us-east1.run.app/)
+[View Live Portfolio Coming Soon]()
 
 Automatically deployed via CI/CD on every push to `main`.
 
