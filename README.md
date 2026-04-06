@@ -85,5 +85,5 @@ Any push to the `main` branch triggers:
 
 ## Author
 
-Rashad Hussain\
+Rashad H.\
 Cloud & DevOps | Systems Engineering
