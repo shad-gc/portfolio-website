@@ -8,7 +8,7 @@ designed to be deployed to **Google Cloud Run**.
 ## Project structure
 
 ```
-portfolio/
+portfolio-website/
 ├── public/             # All static files served to the browser
 │   ├── index.html      # Home / About page
 │   ├── resume.html     # Resume page
@@ -20,6 +20,7 @@ portfolio/
 ├── Dockerfile          # Multi-stage Docker build for Cloud Run
 ├── .dockerignore       # Files excluded from the Docker image
 ├── .gitignore          # Files excluded from git
+├── LICENSE             # Repo license (from GitHub)
 └── README.md           # This file
 ```
 
