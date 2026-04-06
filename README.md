@@ -1,114 +1,91 @@
 # PORTFOLIO.OS
 
-A cyberpunk-terminal themed portfolio website built with Node.js and Express,
-designed to be deployed to **Google Cloud Run**.
+A cyberpunk-terminal themed portfolio website built with Node.js and Express, deployed on Google Cloud Run with a fully automated CI/CD pipeline.
 
----
+This project focuses on modern cloud engineering practices including containerization, automated deployment, and secure authentication between GitHub and Google Cloud.
 
-## Project structure
 
-```
-portfolio-website/
-├── public/             # All static files served to the browser
-│   ├── index.html      # Home / About page
-│   ├── resume.html     # Resume page
-│   ├── projects.html   # Projects page
-│   ├── styles.css      # Global CSS — cyberpunk terminal theme
-│   └── script.js       # Client-side JS (nav, animations, clock)
-├── server.js           # Express server — serves /public, adds /health route
-├── package.json        # npm metadata and scripts
-├── Dockerfile          # Multi-stage Docker build for Cloud Run
-├── .dockerignore       # Files excluded from the Docker image
-├── .gitignore          # Files excluded from git
-├── LICENSE             # Repo license (from GitHub)
-└── README.md           # This file
-```
+## Overview
 
----
+The application is containerized with Docker, deployed on Google Cloud Run, and automatically updated via a CI/CD pipeline using GitHub Actions.
 
-## Run locally
+The frontend UI was generated using Claude Code to accelerate iteration, while the primary focus of this project was on infrastructure, deployment workflows, and automation.
 
-**Prerequisites:** Node.js 18+ installed.
+## Live Site
+
+[View Live Portfolio](https://portfolio-site-598222654730.us-east1.run.app/)
+
+Automatically deployed via CI/CD on every push to `main`.
+
+
+## Tech Stack
+
+- **Cloud Platform:** Google Cloud Platform (Cloud Run, Artifact Registry)
+- **Containerization:** Docker
+- **CI/CD:** GitHub Actions
+- **Frontend:** HTML, CSS, JavaScript
+- **Backend:** Node.js, Express
+- **Tooling:** gcloud CLI, Docker Buildx
+
+
+## Architecture
+
+1. Code is pushed to GitHub  
+2. GitHub Actions builds a Docker image (linux/amd64)  
+3. Image is pushed to Google Artifact Registry  
+4. Cloud Run deploys the latest container revision  
+5. Traffic is routed to the updated service
+
+This follows a standard build → store → deploy workflow for containerized applications.  
+
+## Features
+
+- Fully containerized application  
+- Automated deployments via CI/CD  
+- Serverless hosting with Cloud Run  
+- Health check endpoint (`/health`)  
+- Custom cyberpunk UI/UX  
+
+
+## Getting Started (Local Development)
 
 ```bash
-# 1. Install dependencies
+# Install dependencies
 npm install
 
-# 2. Start the server
+# Start server
 npm start
-
-# 3. Open in browser
-open http://localhost:8080
 ```
+Open:
+http://localhost:8080
 
-The server reads `process.env.PORT` — set it if you need a different port:
+## Docker (Local)
 
 ```bash
-PORT=3000 npm start
+# Build image
+docker build -t portfolio-site .
+
+# Run container
+docker run -p 8080:8080 portfolio-site
 ```
 
----
+## Deployment
 
-## Build and run with Docker
+Deployment is handled automatically via GitHub Actions.
 
-```bash
-# Build the image
-docker build -t portfolio .
+Any push to the `main` branch triggers:
 
-# Run the container (maps container port 8080 → host port 8080)
-docker run -p 8080:8080 portfolio
+- Docker image build (via buildx)
+- Push to Artifact Registry
+- Deployment to Cloud Run
+- Live site update
 
-# Open in browser
-open http://localhost:8080
-```
+## Notes
+- Cloud Run pulls container images from Artifact Registry at deploy time
+- Authentication between GitHub and GCP is handled via Workload Identity Federation (no service account keys)
+- The project follows a build → store → deploy workflow
 
----
+## Author
 
-## Deploy to Google Cloud Run
-
-**Prerequisites:** `gcloud` CLI installed and authenticated.
-
-```bash
-# 1. Set your project
-gcloud config set project YOUR_PROJECT_ID
-
-# 2. Build and push to Google Artifact Registry
-gcloud builds submit --tag gcr.io/YOUR_PROJECT_ID/portfolio
-
-# 3. Deploy to Cloud Run
-gcloud run deploy portfolio \
-  --image gcr.io/YOUR_PROJECT_ID/portfolio \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated \
-  --port 8080
-```
-
-Cloud Run automatically injects `PORT` into the container environment —
-the Express server picks this up via `process.env.PORT`.
-
----
-
-## Health check
-
-The `/health` endpoint returns HTTP 200 and a JSON timestamp:
-
-```bash
-curl http://localhost:8080/health
-# {"status":"OK","timestamp":"2026-04-03T00:00:00.000Z"}
-```
-
-Cloud Run uses this to confirm the container is healthy after deployment.
-
----
-
-## Customizing content
-
-All personal content is placeholder text. Update these files:
-
-| File | What to change |
-|---|---|
-| `public/index.html` | Name, role, bio, links, skills |
-| `public/resume.html` | Work history, education, certifications |
-| `public/projects.html` | Project cards, GitHub links, tech stacks |
-| `public/styles.css` | Colors, fonts, layout tweaks |
+Rashad Hussain\
+Cloud & DevOps | Systems Engineering
