@@ -7,15 +7,15 @@ This project focuses on modern cloud engineering practices including containeriz
 
 ## Overview
 
-The application is containerized with Docker, deployed on Google Cloud Run, and automatically updated via a CI/CD pipeline using GitHub Actions.
+The application is containerized with Docker, deployed on Google Cloud Run, and updated automatically via a CI/CD pipeline using GitHub Actions.
 
 The frontend UI was generated using Claude Code to accelerate iteration, while the primary focus of this project was on infrastructure, deployment workflows, and automation.
 
 ## Live Site
 
-[View Live Portfolio Coming Soon]()
+[View Live Portfolio](https://portfolio.rashadhussain.com)
 
-Automatically deployed via CI/CD on every push to `main`.
+Deployed on Google Cloud Run with a custom domain and automated CI/CD pipeline.
 
 
 ## Tech Stack
@@ -35,6 +35,7 @@ Automatically deployed via CI/CD on every push to `main`.
 3. Image is pushed to Google Artifact Registry  
 4. Cloud Run deploys the latest container revision  
 5. Traffic is routed to the updated service
+6. The application is served via a custom domain with managed HTTPS
 
 ## Features
 
