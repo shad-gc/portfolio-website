@@ -1,27 +1,58 @@
 // server.js — Entry point for the portfolio Express server
-// Serves static files from /public and provides a /health check endpoint.
 
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
 
 const app = express();
 
 // Use PORT from environment (required by Cloud Run) or fall back to 8080
 const PORT = process.env.PORT || 8080;
 
-// Serve everything in the /public directory as static files
-// (HTML, CSS, JS, images, etc.)
-app.use(express.static(path.join(__dirname, 'public')));
+// Security headers
+app.use(helmet({
+  contentSecurityPolicy: false, // safer to start here so nothing breaks
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+  },
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+}));
 
-// Health check endpoint — Cloud Run and load balancers ping this to confirm
-// the container is alive. Must return HTTP 200.
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+// Block clickjacking
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "frame-ancestors 'none';");
+  next();
 });
 
-// Catch-all: redirect any unknown route back to index
-app.get('*', (req, res) => {
+// Serve everything in the /public directory as static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK' });
+});
+
+// Explicit page routes
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/index.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/resume.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'resume.html'));
+});
+
+app.get('/projects.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'projects.html'));
+});
+
+// 404 handler for unknown routes
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 app.listen(PORT, () => {
