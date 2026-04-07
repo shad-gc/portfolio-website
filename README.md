@@ -13,7 +13,7 @@ The frontend UI was generated using Claude Code to accelerate iteration, while t
 
 ## Live Site
 
-[View Live Portfolio](https://portfolio.rashadhussain.com)
+[View Live Portfolio Coming Soon!]()
 
 Deployed on Google Cloud Run with a custom domain and automated CI/CD pipeline.
 
