@@ -38,15 +38,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/index.html', (req, res) => {
+app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/resume.html', (req, res) => {
+app.get('/resume', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'resume.html'));
 });
 
-app.get('/projects.html', (req, res) => {
+app.get('/projects', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'projects.html'));
 });
 
