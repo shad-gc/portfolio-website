@@ -16,8 +16,8 @@ app.use(helmet({
     directives: {
       'default-src': ["'self'"],
       'img-src': ["'self'", 'https:', 'data:'],
-      // 'unsafe-inline' is required for inline style="..." attributes used in the HTML
-      'style-src': ["'self'", "'unsafe-inline'"],
+      'style-src': ["'self'", 'https://fonts.googleapis.com'],
+      'font-src': ["'self'", 'https://fonts.gstatic.com'],
       'script-src': ["'self'"],
       'connect-src': ["'self'"],
       'frame-ancestors': ["'none'"],

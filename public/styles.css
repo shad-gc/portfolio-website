@@ -336,9 +336,15 @@ nav {
   height: 100%;
   background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
   box-shadow: var(--glow-green);
-  /* Width set inline per skill */
   transition: width 1s ease;
 }
+
+.skill-bar-fill.w-40 { width: 40%; }
+.skill-bar-fill.w-45 { width: 45%; }
+.skill-bar-fill.w-50 { width: 50%; }
+.skill-bar-fill.w-60 { width: 60%; }
+.skill-bar-fill.w-75 { width: 75%; }
+.skill-bar-fill.w-80 { width: 80%; }
 
 /* ============================================================
    PROJECTS GRID
@@ -362,6 +368,11 @@ nav {
   border-color: var(--accent-cyan);
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
 }
+
+/* Archived project cards — dimmed appearance */
+.project-card.archived { opacity: 0.65; }
+.project-card.archived .card-tag { color: var(--text-dim); text-shadow: none; }
+.project-card.archived h3 { color: var(--text-dim); text-shadow: none; }
 
 .project-card .card-tag {
   font-size: 0.6rem;
@@ -626,6 +637,9 @@ footer .footer-right { color: var(--accent-green); text-shadow: var(--glow-green
 .text-small   { font-size: 0.72rem; }
 .mt-1         { margin-top: 0.75rem; }
 .mt-2         { margin-top: 1.5rem; }
+.mb-1         { margin-bottom: 1rem; }
+.list-plain   { list-style: none; padding: 0; }
+.badge.badge-inline { margin-left: 0.5rem; }
 
 /* Horizontal rule styled as a terminal separator */
 .hr-terminal {
