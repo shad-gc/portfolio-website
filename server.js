@@ -11,7 +11,20 @@ const PORT = process.env.PORT || 8080;
 
 // Security headers
 app.use(helmet({
-  contentSecurityPolicy: false, // safer to start here so nothing breaks
+  contentSecurityPolicy: {
+    useDefaults: false,
+    directives: {
+      'default-src': ["'self'"],
+      'img-src': ["'self'", 'https:', 'data:'],
+      // 'unsafe-inline' is required for inline style="..." attributes used in the HTML
+      'style-src': ["'self'", "'unsafe-inline'"],
+      'script-src': ["'self'"],
+      'connect-src': ["'self'"],
+      'frame-ancestors': ["'none'"],
+      'base-uri': ["'self'"],
+      'form-action': ["'self'"],
+    },
+  },
   hsts: {
     maxAge: 31536000,
     includeSubDomains: true,
@@ -19,16 +32,11 @@ app.use(helmet({
   referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 }));
 
-// Block clickjacking
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "frame-ancestors 'none';");
-  next();
-});
-
 // Serve everything in the /public directory as static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Health check endpoint
+// Health check endpoint — used by Cloud Run; response is intentionally minimal
+// (no version, hostname, or build info) to avoid leaking deployment details.
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
 });
