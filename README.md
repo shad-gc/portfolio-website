@@ -1,13 +1,12 @@
 # PORTFOLIO.OS
 
-A cyberpunk-terminal themed portfolio website built with Node.js and Express, deployed on Google Cloud Run with a fully automated CI/CD pipeline.
+A cyberpunk-terminal themed portfolio site built with Node.js and Express, deployed on Google Cloud Run with a fully automated CI/CD pipeline.
 
-This project focuses on modern cloud engineering practices including containerization, automated deployment, and secure authentication between GitHub and Google Cloud.
-
+This project is a hands-on exercise in modern cloud engineering: containerization, automated deployment, and keyless auth between GitHub and Google Cloud.
 
 ## Overview
 
-The application is containerized with Docker, deployed on Google Cloud Run, and updated automatically via a CI/CD pipeline using GitHub Actions.
+The application is containerized with Docker, stored in Google Artifact Registry, and served by Google Cloud Run. Every push to `main` triggers a GitHub Actions pipeline that builds a new image, pushes it to Artifact Registry, and tells Cloud Run to deploy it. Auth between GitHub and GCP uses Workload Identity Federation — no service account keys.
 
 The frontend UI was generated using Claude Code to accelerate iteration, while the primary focus of this project was on infrastructure, deployment workflows, and automation.
 
@@ -15,36 +14,37 @@ The frontend UI was generated using Claude Code to accelerate iteration, while t
 
 [View Live Portfolio](https://portfolio.rashadhussain.com)
 
-Deployed on Google Cloud Run with a custom domain and automated CI/CD pipeline.
-
+Custom domain mapped to Cloud Run with Google-managed HTTPS.
 
 ## Tech Stack
 
-- **Cloud Platform:** Google Cloud Platform (Cloud Run, Artifact Registry)
-- **Containerization:** Docker
+- **Cloud Platform:** Google Cloud Platform (Cloud Run, Artifact Registry, IAM / Workload Identity Federation)
+- **Containerization:** Docker (multi-stage, digest-pinned `node:20-alpine`, non-root runtime)
 - **CI/CD:** GitHub Actions
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js, Express
+- **Backend:** Node.js 20, Express, Helmet
 - **Tooling:** gcloud CLI, Docker Buildx
-
 
 ## Architecture
 
-1. Code is pushed to GitHub  
-2. GitHub Actions builds a Docker image (linux/amd64)  
-3. Image is pushed to Google Artifact Registry  
-4. Cloud Run deploys the latest container revision  
-5. Traffic is routed to the updated service
-6. The application is served via a custom domain with managed HTTPS
+How a code change reaches the live site:
+
+1. Commit pushed to `main` on GitHub
+2. GitHub Actions authenticates to GCP via Workload Identity Federation (no keys)
+3. Docker Buildx builds a `linux/amd64` image from a digest-pinned base
+4. Image is pushed to Artifact Registry, tagged with the commit SHA
+5. Cloud Run pulls that image from Artifact Registry and deploys a new revision
+6. Traffic shifts to the new revision; the custom domain serves it over managed HTTPS
+
+Artifact Registry sits between the build and the deploy because Cloud Run only runs images, it doesn't build them. The image has to live somewhere Cloud Run can pull from.
 
 ## Features
 
-- Fully containerized application  
-- Automated deployments via CI/CD  
-- Serverless hosting with Cloud Run  
-- Health check endpoint (`/health`)  
-- Custom cyberpunk UI/UX  
-
+- Fully containerized application
+- Automated deployments via CI/CD on push to `main`
+- Serverless hosting with Cloud Run
+- Health check endpoint at `/health`
+- Custom cyberpunk UI/UX
 
 ## Getting Started (Local Development)
 
@@ -55,8 +55,8 @@ npm install
 # Start server
 npm start
 ```
-Open:
-http://localhost:8080
+
+Open: http://localhost:8080
 
 ## Docker (Local)
 
@@ -70,19 +70,7 @@ docker run -p 8080:8080 portfolio-site
 
 ## Deployment
 
-Deployment is handled automatically via GitHub Actions.
-
-Any push to the `main` branch triggers:
-
-- Docker image build (via buildx)
-- Push to Artifact Registry
-- Deployment to Cloud Run
-- Live site update
-
-## Notes
-- Cloud Run pulls container images from Artifact Registry at deploy time
-- Authentication between GitHub and GCP is handled via Workload Identity Federation (no service account keys)
-- The project follows a build → store → deploy workflow
+Deployment is automated. Any push to `main` triggers a build, a push to Artifact Registry, and a Cloud Run deploy.
 
 ## Author
 
