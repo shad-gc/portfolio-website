@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/doodle-cyberpunk.ico">
+  <title>PORTFOLIO.OS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- nav -->
+  <nav>
+    <a class="nav-brand" href="index.html">
+      <span class="nav-prefix">[SYS]&nbsp;</span>PORTFOLIO.OS
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/about">// ABOUT</a></li>
+      <li><a href="/resume">// RESUME</a></li>
+      <li><a href="/">// PROJECTS</a></li>
+    </ul>
+
+    <div class="nav-status">
+      <span class="dot"></span>
+      <span id="nav-clock">ONLINE</span>
+    </div>
+  </nav>
+
+  <!-- page -->
+  <main class="page-wrapper">
+
+    <!-- title row -->
+    <div class="page-title">
+      <div class="prompt">$ ls -la /ops/projects/ | grep -v classified</div>
+      <h1>ACTIVE PROJECTS</h1>
+      <div class="subtitle">// 6 RECORDS FOUND — SORTED BY PRIORITY</div>
+    </div>
+
+    <!-- index / stats -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">▸ INDEX</span>
+        <span class="panel-id">MANIFEST-001</span>
+      </div>
+      <div class="panel-body">
+        <div class="data-row">
+          <span class="data-label">TOTAL PROJECTS</span>
+          <span class="data-value text-green">6</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">STATUS</span>
+          <span class="data-value">
+            <span class="badge badge-green">4 ACTIVE</span>
+            <span class="badge badge-magenta">2 ARCHIVED</span>
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">PRIMARY STACK</span>
+          <span class="data-value">
+            <span class="badge badge-cyan">GCP</span>
+            <span class="badge badge-cyan">GitHub Actions</span>
+            <span class="badge badge-cyan">Docker</span>
+            <span class="badge badge-cyan">Python</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- project cards -->
+    <div class="projects-grid">
+
+      <!-- portfolio.os -->
+      <div class="project-card">
+        <div class="card-tag">// CLOUD INFRA</div>
+        <h3>PORTFOLIO.OS</h3>
+        <p>
+          This site. A cyberpunk-terminal portfolio deployed to Google Cloud Run with a fully automated CI/CD pipeline.
+          Containerized with Docker, served via Express, and mapped to a custom domain.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">Cloud Run</span>
+          <span class="tech-tag">Github Actions</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/shad-gc/portfolio-website" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+          <a href="#" class="card-link">Live ↗</a>
+        </div>
+      </div>
+
+      <!-- rollcall -->
+      <div class="project-card">
+        <div class="card-tag">// AUTOMATION PIPELINE</div>
+        <h3>ROLLCALL</h3>
+        <p>
+
+          Automated workforce data pipeline integrating Envoy and BambooHR data via APIs.
+          Designed Make.com workflows to extract, normalize, and merge multi-source data into a consistent weekly report, handling edge cases like time off vs absence.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">APIs</span>
+          <span class="tech-tag">Automation</span>
+          <span class="tech-tag">Make.com</span>
+          <span class="tech-tag">Data Pipeline</span>
+          <span class="tech-tag">Google Sheets</span>
+
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/shad-gc/attendance-reporting-automation" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- gcp project factory -->
+      <div class="project-card">
+        <div class="card-tag">// PLATFORM ENGINEERING</div>
+        <h3>GCP PROJECT FACTORY</h3>
+        <p>
+          Event-driven infrastructure provisioning system that routes project requests through Pub/Sub, processes them in a Cloud Run worker, 
+          and uses Terraform with remote state (GCS) to create standardized resources via a platform/factory architecture.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Pub/Sub</span>
+          <span class="tech-tag">Terraform</span>
+          <span class="tech-tag">Cloud Run</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/shad-gc/project-factory-poc" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- terraform modules -->
+      <div class="project-card">
+        <div class="card-tag">// INFRASTRUCTURE</div>
+        <h3>TERRAFORM MODULES</h3>
+        <p>
+          Reusable Terraform modules for spinning up Cloud Run services, VPCs,
+          and IAM bindings on GCP. Published with full variable documentation.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Terraform</span>
+          <span class="tech-tag">GCP</span>
+          <span class="tech-tag">Cloud Run</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- archived: task board -->
+      <div class="project-card archived">
+        <div class="card-tag">// ARCHIVED · WEB APP</div>
+        <h3>TASK BOARD</h3>
+        <p>
+          Lightweight Kanban board built with vanilla JS and a SQLite backend.
+          Functional but superseded by better tooling. Kept for reference.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">HTML/CSS/JS</span>
+          <span class="tech-tag">Express</span>
+          <span class="tech-tag">SQLite</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+      <!-- archived: log harvester -->
+      <div class="project-card archived">
+        <div class="card-tag">// ARCHIVED · SCRIPTS</div>
+        <h3>LOG HARVESTER</h3>
+        <p>
+          Bash + Python scripts that scraped application logs from GCS, parsed
+          structured JSON, and loaded summaries into BigQuery for analysis.
+        </p>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Bash</span>
+          <span class="tech-tag">BigQuery</span>
+          <span class="tech-tag">GCS</span>
+        </div>
+        <div class="card-links">
+          <a href="https://github.com/yourhandle" class="card-link" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </div>
+
+    </div><!-- /project cards -->
+
+    <!-- oss contributions -->
+    <div class="panel mt-2">
+      <div class="panel-header">
+        <span class="panel-title">▸ OPEN SOURCE CONTRIBUTIONS</span>
+        <span class="panel-id">MODULE-OSS</span>
+      </div>
+      <div class="panel-body">
+        <div class="data-row">
+          <span class="data-label">REPO</span>
+          <span class="data-value">
+            <a href="https://github.com/someorg/somerepo" target="_blank" rel="noopener">someorg/somerepo</a>
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">CONTRIBUTION</span>
+          <span class="data-value text-dim">
+            Fixed edge case in retry logic for HTTP client — PR #412
+          </span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">STATUS</span>
+          <span class="data-value">
+            <span class="badge badge-green">MERGED</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span class="footer-left">// PORTFOLIO.OS v1.0.0 — DEPLOYED ON CLOUD RUN</span>
+    <span class="footer-right">STATUS: ONLINE ◆</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

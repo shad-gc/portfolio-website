@@ -1,0 +1,22 @@
+# keep the image lean. anything that isn't runtime stays out.
+
+node_modules
+npm-debug.log*
+
+# vcs and editor noise
+.git
+.gitignore
+.DS_Store
+
+# secrets — should never exist in the repo, but defense in depth
+*.env
+*.env.*
+
+# CI config doesn't belong in the runtime image
+.github
+
+# docs and licensing — public on github, not needed in the container
+README.md
+*.md
+LICENSE
+SECURITY.md
