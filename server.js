@@ -27,9 +27,14 @@ app.use(helmet({
       'form-action': ["'self'"],
     },
   },
+  // hsts: 1 year, include subdomains, preload-eligible.
+  // note: cloudflare currently overrides this at the edge with its own value
+  // (configure at zone -> ssl/tls -> edge certificates -> hsts). this is the
+  // origin fallback if cloudflare is ever bypassed.
   hsts: {
     maxAge: 31536000,
     includeSubDomains: true,
+    preload: true,
   },
   referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
 }));

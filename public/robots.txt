@@ -1,0 +1,83 @@
+# rashadhussain.com — robots policy
+# search indexers: welcome.
+# ai/llm training crawlers: not welcome. this is a personal site, not training data.
+
+User-agent: *
+Allow: /
+
+# ---- llm / ai training crawlers — explicitly disallowed ----
+# anthropic
+User-agent: anthropic-ai
+Disallow: /
+User-agent: Claude-Web
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+
+# openai
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: OAI-SearchBot
+Disallow: /
+
+# google ai (separate from googlebot)
+User-agent: Google-Extended
+Disallow: /
+
+# meta
+User-agent: FacebookBot
+Disallow: /
+User-agent: Meta-ExternalAgent
+Disallow: /
+User-agent: meta-externalagent
+Disallow: /
+
+# bytedance
+User-agent: Bytespider
+Disallow: /
+
+# common crawl (feeds many llm training sets)
+User-agent: CCBot
+Disallow: /
+
+# perplexity
+User-agent: PerplexityBot
+Disallow: /
+User-agent: Perplexity-User
+Disallow: /
+
+# cohere
+User-agent: cohere-ai
+Disallow: /
+
+# you.com
+User-agent: YouBot
+Disallow: /
+
+# diffbot
+User-agent: Diffbot
+Disallow: /
+
+# omgili (web.archive companion crawler often used for training)
+User-agent: omgili
+Disallow: /
+
+# amazon
+User-agent: Amazonbot
+Disallow: /
+
+# apple
+User-agent: Applebot-Extended
+Disallow: /
+
+# misc training crawlers
+User-agent: ImagesiftBot
+Disallow: /
+User-agent: Timpibot
+Disallow: /
+User-agent: Webzio-Extended
+Disallow: /
+
+# sitemap (none currently)
