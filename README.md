@@ -1,78 +1,94 @@
-# PORTFOLIO.OS
+# portfolio-website
 
-A cyberpunk-terminal themed portfolio site built with Node.js and Express, deployed on Google Cloud Run with a fully automated CI/CD pipeline.
+personal portfolio site at `rashadhussain.com` and `www.rashadhussain.com`. node/express serving static assets, deployed to cloud run, fronted by cloudflare. cyberpunk-terminal theme.
 
-This project is a hands-on exercise in modern cloud engineering: containerization, automated deployment, and keyless auth between GitHub and Google Cloud.
+mostly an infrastructure exercise: keyless ci/cd from github to gcp, edge hardening at cloudflare, real email-spoof defenses on a domain that sends no email.
 
-## Overview
+## live
 
-The application is containerized with Docker, stored in Google Artifact Registry, and served by Google Cloud Run. Every push to `main` triggers a GitHub Actions pipeline that builds a new image, pushes it to Artifact Registry, and tells Cloud Run to deploy it. Auth between GitHub and GCP uses Workload Identity Federation — no service account keys.
+- https://rashadhussain.com
+- https://www.rashadhussain.com (redirects to apex)
 
-The frontend UI was generated using Claude Code to accelerate iteration, while the primary focus of this project was on infrastructure, deployment workflows, and automation.
+## stack
 
-## Live Site
+- node 20 / express + helmet
+- docker (multi-stage, digest-pinned `node:20-alpine`, non-root)
+- cloud run v2 (us-west1)
+- artifact registry (docker, regional)
+- github actions + workload identity federation (no sa keys)
+- cloudflare (dns, proxy, waf, hsts at edge)
 
-[View Live Portfolio](https://portfolio.rashadhussain.com)
+## architecture
 
-Custom domain mapped to Cloud Run with Google-managed HTTPS.
-
-## Tech Stack
-
-- **Cloud Platform:** Google Cloud Platform (Cloud Run, Artifact Registry, IAM / Workload Identity Federation)
-- **Containerization:** Docker (multi-stage, digest-pinned `node:20-alpine`, non-root runtime)
-- **CI/CD:** GitHub Actions
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js 20, Express, Helmet
-- **Tooling:** gcloud CLI, Docker Buildx
-
-## Architecture
-
-How a code change reaches the live site:
-
-1. Commit pushed to `main` on GitHub
-2. GitHub Actions authenticates to GCP via Workload Identity Federation (no keys)
-3. Docker Buildx builds a `linux/amd64` image from a digest-pinned base
-4. Image is pushed to Artifact Registry, tagged with the commit SHA
-5. Cloud Run pulls that image from Artifact Registry and deploys a new revision
-6. Traffic shifts to the new revision; the custom domain serves it over managed HTTPS
-
-Artifact Registry sits between the build and the deploy because Cloud Run only runs images, it doesn't build them. The image has to live somewhere Cloud Run can pull from.
-
-## Features
-
-- Fully containerized application
-- Automated deployments via CI/CD on push to `main`
-- Serverless hosting with Cloud Run
-- Health check endpoint at `/health`
-- Custom cyberpunk UI/UX
-
-## Getting Started (Local Development)
-
-```bash
-# Install dependencies
-npm install
-
-# Start server
-npm start
+```
+visitor
+   │
+   ▼
+rashadhussain.com / www  (cloudflare dns, proxied)
+   │
+   ▼
+cloudflare edge: tls, waf (default sensitivity), hsts injection, robots.txt intercept
+   │
+   ▼
+cloud run v2 service: portfolio (us-west1)
+   │   express + helmet
+   │   csp locked to self + google fonts host, no inline scripts/styles
+   │   frame-ancestors 'none'
+   │
+   └── static assets from /public
 ```
 
-Open: http://localhost:8080
+## deploy flow
 
-## Docker (Local)
+every push to `main` triggers `.github/workflows/deploy.yml`:
+
+1. checkout
+2. authenticate to gcp via wif (`google-github-actions/auth@v2`)
+3. `docker buildx` build for `linux/amd64` from digest-pinned base
+4. push to artifact registry, tagged with commit sha
+5. `gcloud run deploy` with the new image
+6. traffic shifts to the new revision
+
+no service account keys anywhere. the deployer service account is bound to wif and scoped by attribute condition to `assertion.repository=='shad-gc/portfolio-website'`.
+
+## security posture
+
+| layer | control |
+|---|---|
+| express | helmet with custom csp (self + google fonts only, no inline) |
+| express | `x-powered-by` disabled |
+| express | frame-ancestors 'none' |
+| origin | hsts: `max-age=31536000; includeSubDomains; preload` (phase 2) |
+| origin | robots.txt blocks llm training crawlers (gptbot, ccbot, claudebot, perplexitybot, etc.) |
+| cloudflare | edge tls + waf managed rules at default sensitivity |
+| cloudflare | hsts at edge, preload-eligible |
+| dns | spf `-all`, dmarc `p=reject`, null mx, dkim wildcard null, caa pinned |
+| dns | tls-rpt live |
+
+last pentest: 2026-05-17, passed for intended threat model (public static site, no auth, no api). evidence kept locally.
+
+## local development
 
 ```bash
-# Build image
-docker build -t portfolio-site .
+npm install
+npm start
+# http://localhost:8080
+```
 
-# Run container
+## docker (local)
+
+```bash
+docker build -t portfolio-site .
 docker run -p 8080:8080 portfolio-site
 ```
 
-## Deployment
+## related
 
-Deployment is automated. Any push to `main` triggers a build, a push to Artifact Registry, and a Cloud Run deploy.
+- knowledgebase: [shad-gc/runbook](https://github.com/shad-gc/runbook) — adrs, runbooks, dns/gcp/github state
+- dns state: [runbook/infrastructure/dns-state.md](https://github.com/shad-gc/runbook/blob/main/infrastructure/dns-state.md)
+- generic deploy pattern: [runbook/runbooks/deploy-cloudrun-app.md](https://github.com/shad-gc/runbook/blob/main/runbooks/deploy-cloudrun-app.md)
+- companion repos: [shad-gc/trapdoor](https://github.com/shad-gc/trapdoor), [shad-gc/shad-home](https://github.com/shad-gc/shad-home)
 
-## Author
+## author
 
-Rashad H.\
-Cloud & DevOps | Systems Engineering
+rashad h. — cloud / devops / systems
