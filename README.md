@@ -1,13 +1,10 @@
 # portfolio-website
 
-personal portfolio site at `rashadhussain.com` and `www.rashadhussain.com`. node/express serving static assets, deployed to cloud run, fronted by cloudflare. cyberpunk-terminal theme.
+personal portfolio site at `portfolio.rashadhussain.com`. node/express serving static assets, deployed to cloud run, fronted by cloudflare. cyberpunk-terminal theme.
 
-mostly an infrastructure exercise: keyless ci/cd from github to gcp, edge hardening at cloudflare, real email-spoof defenses on a domain that sends no email.
+the apex `rashadhussain.com` is served by a separate repo ([shad-gc/shad-home](https://github.com/shad-gc/shad-home)) — a minimal nginx landing. this repo is the deeper portfolio at the `portfolio` subdomain.
 
-## live
-
-- https://rashadhussain.com
-- https://www.rashadhussain.com (redirects to apex)
+mostly an infrastructure exercise: keyless ci/cd from github to gcp, edge hardening at cloudflare, helmet-based csp at the express layer.
 
 ## stack
 
@@ -24,19 +21,21 @@ mostly an infrastructure exercise: keyless ci/cd from github to gcp, edge harden
 visitor
    │
    ▼
-rashadhussain.com / www  (cloudflare dns, proxied)
+portfolio.rashadhussain.com  (cloudflare dns, proxied)
    │
    ▼
-cloudflare edge: tls, waf (default sensitivity), hsts injection, robots.txt intercept
+cloudflare edge: tls, waf (default sensitivity), hsts at edge
    │
    ▼
-cloud run v2 service: portfolio (us-west1)
+cloud run v2 service: portfolio
    │   express + helmet
    │   csp locked to self + google fonts host, no inline scripts/styles
    │   frame-ancestors 'none'
    │
    └── static assets from /public
 ```
+
+note: the apex `rashadhussain.com` and `www` are served by `shad-gc/shad-home` (nginx), not this repo. a cloudflare transform rule injects the same csp + hsts headers at the edge on apex, which is why the headers look identical even though shad-home doesn't set them at origin.
 
 ## deploy flow
 
