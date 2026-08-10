@@ -74,8 +74,10 @@
         <div class="card-tag">// CLOUD INFRA</div>
         <h3>PORTFOLIO.OS</h3>
         <p>
-          This site. A cyberpunk-terminal portfolio deployed to Google Cloud Run with a fully automated CI/CD pipeline.
-          Containerized with Docker, served via Express, and mapped to a custom domain.
+          This site. A cyberpunk-terminal portfolio containerized with Docker, served via Express, and deployed to
+          Cloud Run behind Cloudflare. Every push to main triggers a keyless CI/CD pipeline authenticated with
+          Workload Identity Federation, so no service account keys exist anywhere. Locked down with a strict
+          Helmet content security policy.
         </p>
         <div class="tech-stack">
           <span class="tech-tag">Node.js</span>
@@ -95,8 +97,10 @@
         <div class="card-tag">// CONTENT AUTOMATION</div>
         <h3>FRESH PRINTS</h3>
         <p>
-          A private daily tech-news newspaper. Claude reads clustered news from ~20 sources every morning, writes a
-          front page and wire, and emails the edition at 6am PDT.
+          A private daily tech-news newspaper, built instead of making an X account. A pipeline ingests ~20 sources
+          hourly and clusters coverage across them; each morning Claude ranks the last 24 hours and writes a
+          five-story front page plus a wire section. Rendered as a proper broadsheet and emailed at 6am PDT, with
+          every edition archived.
         </p>
         <div class="tech-stack">
           <span class="tech-tag">Node.js</span>
@@ -116,9 +120,10 @@
         <div class="card-tag">// AUTOMATION PIPELINE</div>
         <h3>ROLLCALL</h3>
         <p>
-
-          Automated workforce data pipeline integrating Envoy and BambooHR data via APIs.
-          Designed Make.com workflows to extract, normalize, and merge multi-source data into a consistent weekly report, handling edge cases like time off vs absence.
+          Automated workforce data pipeline integrating Envoy and BambooHR through their APIs. Make.com workflows
+          extract, normalize, and merge multi-source records into a consistent weekly report, handling edge cases
+          like time off versus genuine absence. Replaced a recurring manual reporting task that spanned two
+          disconnected systems.
         </p>
         <div class="tech-stack">
           <span class="tech-tag">APIs</span>
@@ -138,8 +143,10 @@
         <div class="card-tag">// PLATFORM ENGINEERING</div>
         <h3>GCP PROJECT FACTORY</h3>
         <p>
-          Event-driven infrastructure provisioning system that routes project requests through Pub/Sub, processes them in a Cloud Run worker, 
-          and uses Terraform with remote state (GCS) to create standardized resources via a platform/factory architecture.
+          Event-driven infrastructure provisioning that routes project requests through Pub/Sub into a Cloud Run
+          worker, which applies Terraform against remote GCS state. A platform/factory split keeps shared org
+          resources separate from per-project ones, so standardized environments get created without anyone
+          touching the console.
         </p>
         <div class="tech-stack">
           <span class="tech-tag">Python</span>
@@ -158,10 +165,9 @@
         <h3>TRAPDOOR</h3>
         <p>
           A credential honeypot disguised as an admin login at a real subdomain. Every probe and credential
-          submission is captured to partitioned GCS logs with rate-limited Discord alerts. Serves fake .env
-          decoys seeded with HMAC-signed canary URLs — if a canary later detonates, the bait was parsed.
-          Flags session-cookie replay across IPs. TLS terminates at a Cloudflare Worker that host-rewrites
-          to Cloud Run.
+          submission is captured to partitioned GCS logs with rate-limited Discord alerts, and fake .env decoys are
+          seeded with HMAC-signed canary URLs — if a canary detonates, the bait was parsed. Source kept private so
+          the trap stays undetectable.
         </p>
         <div class="tech-stack">
           <span class="tech-tag">Node.js</span>
@@ -171,9 +177,6 @@
           <span class="tech-tag">Secret Manager</span>
           <span class="tech-tag">WIF</span>
         </div>
-        <div class="card-links">
-          <a href="https://github.com/shad-gc/trapdoor" class="card-link" target="_blank" rel="noopener">GitHub →</a>
-        </div>
       </div>
 
       <!-- pokemon emerald ace -->
@@ -181,10 +184,10 @@
         <div class="card-tag">// SECURITY RESEARCH</div>
         <h3>POKEMON EMERALD ACE</h3>
         <p>
-          A reproducible arbitrary code execution exploit in my childhood copy of Pokemon Emerald, via the
-          Glitzer Popping vulnerability. Documents the full chain — invalid state construction, out-of-bounds
-          memory access, player-controlled data executed as instructions — with companion write-ups on PC box
-          memory layout, ACE payloads, and save recovery. Stable on original GBA hardware and emulators.
+          A reproducible arbitrary code execution exploit in my childhood copy of Pokemon Emerald, via the Glitzer
+          Popping vulnerability. Documents the full chain — invalid state construction, out-of-bounds memory access,
+          then player-controlled data executed as instructions — with companion write-ups on memory layout, payloads,
+          and save recovery.
         </p>
         <div class="tech-stack">
           <span class="tech-tag">GBA / ARM</span>
